@@ -8,6 +8,8 @@ import Navbar from "../components/Navbar";
 import Newsletter from "../components/Newsletter";
 import { publicRequest } from "../requests";
 import { mobile } from "../responsive";
+import { addProduct } from "../redux/cartRedux";
+import { useDispatch } from "react-redux";
 
 const Container = styled.div``;
 
@@ -125,6 +127,7 @@ const Product = () => {
     const [quantity, setQuantity] = useState(1)
     const [color, setColor] = useState(1)
     const [size, setSize] = useState(1)
+    const dispatch = useDispatch();
 
 
     useEffect(() => {
@@ -149,7 +152,7 @@ const Product = () => {
 
     const handleClick = () => {
         //update cart
-
+        dispatch(addProduct({ ...product, quantity, color, size }))
     }
 
     return (
