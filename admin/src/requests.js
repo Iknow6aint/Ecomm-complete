@@ -6,7 +6,7 @@ const TOKEN = JSON.parse(JSON.parse(localStorage.getItem("persist:root")).user).
 
 
 
-console.log(TOKEN);
+
 export const publicRequest = axios.create({
     baseURL: APIURL,
 })
