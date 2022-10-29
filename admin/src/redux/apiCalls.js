@@ -1,6 +1,19 @@
 import { loginFailure, loginStart, loginSuccess } from "./userSlice"
 import { publicRequest, userRequest } from "../requests"
-import { getProductFailure, getProductStart, getProductSucess, deleteProductFailure, deleteProductStart, deleteProductSucess } from "./productRedux"
+import {
+    getProductFailure,
+    getProductStart,
+    getProductSucess,
+    deleteProductFailure,
+    deleteProductStart,
+    deleteProductSucess,
+    addProductFailure,
+    addProductStart,
+    addProductSuccess,
+    updateProductFailure,
+    updateProductSuccess,
+    updateProductStart
+} from "./productRedux"
 
 export const login = async (dispatch, user) => {
     dispatch(loginStart());
@@ -29,5 +42,24 @@ export const deleteProducts = async (dispatch, id) => {
         dispatch(deleteProductSucess(id))
     } catch (error) {
         dispatch(deleteProductFailure())
+    }
+}
+
+export const updateProduct = async (id, product, dispatch) => {
+    dispatch(updateProductStart());
+    try {
+        // update
+        dispatch(updateProductSuccess({ id, product }));
+    } catch (err) {
+        dispatch(updateProductFailure());
+    }
+};
+export const addProduct = async (product, dispatch) => {
+    dispatch(addProductStart());
+    try {
+        const res = await userRequest.post(`/products`, product);
+        dispatch(addProductSuccess(res.data));
+    } catch (err) {
+        dispatch(addProductFailure());
     }
 }

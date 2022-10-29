@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 
-const userSlice = createSlice({
+const productSlice = createSlice({
     name: "product",
     initialState: {
         product: null,
@@ -38,10 +38,52 @@ const userSlice = createSlice({
         deleteProductFailure: (state) => {
             state.isFetching = false;
             state.erorr = true
+        },
+        //update
+        updateProductStart: (state) => {
+            state.isFetching = true;
+            state.erorr = false
+        },
+
+        updateProductSuccess: (state, action) => {
+            state.isFetching = false;
+            state.product[state.product.findIndex(item => item.id === action.payload.id)]
+                = action.payload.user
+        },
+        updateProductFailure: (state) => {
+            state.isFetching = false;
+            state.erorr = true
+        },
+        //add product
+        addProductStart: (state) => {
+            state.isFetching = true;
+            state.erorr = false
+        },
+
+        addProductSuccess: (state, action) => {
+            state.isFetching = false;
+            state.product.push(action.payload)
+        },
+        addProductFailure: (state) => {
+            state.isFetching = false;
+            state.erorr = true
         }
-    },
+    }
 })
 
 
-export const { getProductFailure, getProductStart, getProductSucess, deleteProductFailure, deleteProductStart, deleteProductSucess } = userSlice.actions;
-export default userSlice.reducer;
+export const {
+    getProductFailure,
+    getProductStart,
+    getProductSucess,
+    deleteProductFailure,
+    deleteProductStart,
+    deleteProductSucess,
+    addProductFailure,
+    addProductStart,
+    addProductSuccess,
+    updateProductFailure,
+    updateProductStart,
+    updateProductSuccess
+} = productSlice.actions;
+export default productSlice.reducer;
