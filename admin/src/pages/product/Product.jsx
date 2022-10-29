@@ -1,7 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import "./product.css";
 import Chart from "../../components/chart/Chart"
-import { productData } from "../../dummyData"
 import { Publish } from "@material-ui/icons";
 import { useSelector } from "react-redux"
 import { useState } from "react";
@@ -15,7 +14,7 @@ export default function Product() {
     const [pStats, setPStats] = useState([]);
 
     const product = useSelector((state) =>
-        state.product.products.find((product) => product._id === productId)
+        state.products.product.find((product) => product._id === productId)
     );
 
     const MONTHS = useMemo(
@@ -66,7 +65,7 @@ export default function Product() {
             </div>
             <div className="productTop">
                 <div className="productTopLeft">
-                    <Chart data={productData} dataKey="Sales" title="Sales Performance" />
+                    <Chart data={pStats} dataKey="Sales" title="Sales Performance" />
                 </div>
                 <div className="productTopRight">
                     <div className="productInfoTop">
