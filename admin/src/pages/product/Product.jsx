@@ -9,7 +9,7 @@ import { useEffect } from "react";
 import { userRequest } from "../../requests"
 
 export default function Product() {
-    const location = useLocation()
+    const location = useLocation();
     const productId = location.pathname.split("/")[2];
     const [pStats, setPStats] = useState([]);
 
