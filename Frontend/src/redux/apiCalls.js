@@ -1,4 +1,4 @@
-import { loginFailure, loginStart, loginSuccess, registerStart } from "./userSlice"
+import { loginFailure, loginStart, loginSuccess, registerStart, registerSuccess, registerFailure } from "./userSlice"
 import { publicRequest } from "../requests"
 
 export const login = async (dispatch, user) => {
@@ -15,8 +15,8 @@ export const register = async (dispatch, user) => {
     dispatch(registerStart());
     try {
         const res = await publicRequest.post("/auth/register", user)
-        dispatch(loginSuccess(res.data))
+        dispatch(registerSuccess(res.data))
     } catch (error) {
-        dispatch(loginFailure())
+        dispatch(registerFailure())
     }
 }
