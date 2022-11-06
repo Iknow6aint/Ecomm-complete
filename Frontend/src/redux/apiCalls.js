@@ -11,7 +11,7 @@ export const login = async (dispatch, user) => {
     }
 }
 
-export const register = async (dispatch, user) => {
+export const register = async (user, dispatch) => {
     dispatch(registerStart());
     try {
         const res = await publicRequest.post("/auth/register", user)
