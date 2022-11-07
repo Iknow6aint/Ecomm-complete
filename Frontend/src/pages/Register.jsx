@@ -70,7 +70,7 @@ const Register = () => {
     const dispatch = useDispatch()
     const { isFetching, error } = useSelector((state) => state.user)
 
-    const handleRegister = (e) => {
+    const handleRegister = (e,) => {
         e.preventDefault();
         login(dispatch, { name, password, email })
         console.log(name, password, email);
