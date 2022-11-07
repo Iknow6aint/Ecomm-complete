@@ -72,7 +72,7 @@ const Register = () => {
 
     const handleRegister = (e) => {
         e.preventDefault();
-        login(dispatch, { name, password, email })
+        register(dispatch, { name, password, email })
         console.log(name, password, email);
     }
     return (
