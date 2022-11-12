@@ -12,19 +12,12 @@ export const login = async (dispatch, user) => {
     }
 }
 
-export const register = async (dispatch, params) => {
+export const register = async (user, dispatch) => {
     dispatch(registerStart());
-    console.log(params);
     try {
-        const res = await publicRequest.post("/auth/register", JSON.stringify(params),
-            {
-                headers: { "Content-Type": "application/json" },
-                withCredentials: false,
-            }
-        )
+        const res = await publicRequest.post("/auth/register", user)
         dispatch(registerSuccess(res.data))
     } catch (error) {
         dispatch(registerFailure())
-        console.error(error);
     }
 }
