@@ -12,3 +12,7 @@ export const userRequest = axios.create({
     baseURL: APIURL,
     header: { token: `Bearer ${TOKEN}` },
 })
+
+export const userReg = axios.create({
+    baseURL: APIURL
+})
