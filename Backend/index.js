@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
     next();
 });
 app.use(cors({
-    origin: 'http://localhost:3000'
+    origin: '*'
 }));
 app.use(express.json());
 app.use("/api/auth", authRoute);
