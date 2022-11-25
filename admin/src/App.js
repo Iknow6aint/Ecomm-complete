@@ -17,7 +17,7 @@ function App() {
     return (
         <Router>
             <Switch>
-                <Route path="/login">
+                <Route path="/admin/login">
                     <Login />
                 </Route>
                 {admin && (
@@ -37,10 +37,10 @@ function App() {
                             <Route path="/newUser">
                                 <NewUser />
                             </Route>
-                            <Route path="/products">
+                            <Route path="/admin/products">
                                 <ProductList />
                             </Route>
-                            <Route path="/product/:productId">
+                            <Route path="/admin/product/:productId">
                                 <Product />
                             </Route>
                             <Route path="/newproduct">

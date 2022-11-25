@@ -8,13 +8,19 @@ const productRoute = require("./routes/product");
 const cartRoute = require("./routes/cart");
 const orderRoute = require("./routes/order");
 const stripeRoute = require("./routes/stripe");
+const path = require('path')
 const cors = require("cors");
 
 dotenv.config();
 
 mongoose
     .connect(process.env.MONGO_URL)
-    .then(() => console.log("DB Connection Successfull!"))
+    .then(() => {
+        console.log("DB Connection Successfull!");
+        app.listen(process.env.PORT || 5000, () => {
+            console.log("Backend server is running!");
+        });
+    })
     .catch((err) => {
         console.log(err);
     });
@@ -26,6 +32,14 @@ app.use(function (req, res, next) {
 app.use(cors({
     origin: '*'
 }));
+
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'backend', 'public', 'index.html'))
+})
+app.get('/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'backend', 'adminpublic', 'index.html'))
+})
+
 app.use(express.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
@@ -34,6 +48,4 @@ app.use("/api/carts", cartRoute);
 app.use("/api/orders", orderRoute);
 app.use("/api/checkout", stripeRoute);
 
-app.listen(process.env.PORT || 5000, () => {
-    console.log("Backend server is running!");
-});
+

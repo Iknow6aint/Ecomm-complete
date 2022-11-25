@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux"
-import { login, register } from "../redux/apiCalls"
+import { signupUser, userSelector, } from "../redux/userSlice";
+import { useHistory } from 'react-router-dom';
 
 
 const Container = styled.div`
@@ -60,21 +61,33 @@ const Button = styled.button`
 const Error = styled.span`
   color: red;
 `;
+
 const Register = () => {
 
     const [password, setPassword] = useState(" ")
     const [name, setName] = useState(" ")
     const [email, setEmail] = useState(" ")
 
+    const data = {
+        name,
+        email,
+        password
+    }
 
     const dispatch = useDispatch()
-    const { isFetching, error } = useSelector((state) => state.user)
+    const { isFetching, isSuccess, error } = useSelector(userSelector)
+    const history = useHistory();
 
-    const handleRegister = (e,) => {
+    const handleLogin = (e) => {
         e.preventDefault();
-        register(dispatch, { name, password, email })
-        console.log(name, password, email);
+        dispatch(signupUser(data))
     }
+
+    useEffect(() => {
+        if (isSuccess) {
+            history.push('/');
+        }
+    }, [isSuccess, history]);
     return (
         <Container>
             <Wrapper>
@@ -86,7 +99,10 @@ const Register = () => {
                     <Input placeholder="last name" />
                     <Input placeholder="username" />
                     <Input placeholder="email"
-                        onChange={(e) => setEmail(e.target.value)}
+                        onChange={(e) => {
+                            setEmail(e.target.value);
+                            console.log(email)
+                        }}
                     />
                     <Input placeholder="password"
                         onChange={(e) => setPassword(e.target.value)}
@@ -96,7 +112,7 @@ const Register = () => {
                         By creating an account, I consent to the processing of my personal
                         data in accordance with the <b>PRIVACY POLICY</b>
                     </Agreement>
-                    <Button onClick={handleRegister} disabled={isFetching}>CREATE</Button>
+                    <Button onClick={handleLogin} disabled={isFetching}>CREATE</Button>
                     {error && <Error>Something went wrong...</Error>}
                 </Form>
             </Wrapper>
