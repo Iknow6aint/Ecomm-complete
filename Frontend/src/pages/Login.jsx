@@ -1,3 +1,5 @@
+/* React Registration Page*/
+
 import { useState } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
