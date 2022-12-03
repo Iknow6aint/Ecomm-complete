@@ -1,4 +1,4 @@
-import { loginFailure, loginStart, loginSuccess, registerStart, registerSuccess, registerFailure } from "./userSlice"
+import { loginFailure, loginStart, loginSuccess, } from "./userSlice"
 import { publicRequest, userRequest } from "../requests"
 import axios from "axios";
 
@@ -16,19 +16,19 @@ export const login = async (dispatch, user) => {
     }
 }
 
-export const register = async (dispatch, user) => {
-    dispatch(registerStart());
-    console.log(typeof user, JSON.stringify(user));
-    try {
-        const res = await fetch(APIURL, {
-            method: 'POST',
-            body: JSON.stringify(JSON.parse(user)),
-            headers: {
-                "content-type": "application/json"
-            }
-        })
-        dispatch(registerSuccess(res.data))
-    } catch (error) {
-        dispatch(registerFailure())
-    }
-}
+// export const register = async (dispatch, user) => {
+//     dispatch(registerStart());
+//     console.log(typeof user, JSON.stringify(user));
+//     try {
+//         const res = await fetch(APIURL, {
+//             method: 'POST',
+//             body: JSON.stringify(JSON.parse(user)),
+//             headers: {
+//                 "content-type": "application/json"
+//             }
+//         })
+//         dispatch(registerSuccess(res.data))
+//     } catch (error) {
+//         dispatch(registerFailure())
+//     }
+//}

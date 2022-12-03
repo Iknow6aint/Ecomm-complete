@@ -33,12 +33,12 @@ app.use(cors({
     origin: '*'
 }));
 
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'backend', 'public', 'index.html'))
-})
-app.get('/*', (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'backend', 'adminpublic', 'index.html'))
-})
+// app.get('/*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '..', 'backend', 'public', 'index.html'))
+// })
+// app.get('/*', (req, res) => {
+//     res.sendFile(path.join(__dirname, '..', 'backend', 'adminpublic', 'index.html'))
+// })
 
 app.use(express.json());
 app.use("/api/auth", authRoute);

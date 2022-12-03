@@ -16,14 +16,14 @@
         "react-dom": "^17.0.2",
         "react-redux": "^8.0.4",
         "react-router-dom": "^5.2.0",
-        "react-scripts": "4.0.3",
+        "react-scripts": "^4.0.3",
         "recharts": "^2.0.9",
         "redux-persist": "^6.0.0",
         "timeago.js": "^4.0.0-beta.3",
         "web-vitals": "^1.0.1"
     },
     "scripts": {
-        "start": "react-scripts start",
+        "start": "react-scripts --openssl-legacy-provider start",
         "build": "set BUILD_PATH=../backend/adminpublic&& react-scripts build",
         "test": "react-scripts test",
         "eject": "react-scripts eject"

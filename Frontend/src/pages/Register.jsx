@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { mobile } from "../responsive";
 import { useDispatch, useSelector } from "react-redux"
-import { signupUser, userSelector, } from "../redux/userSlice";
+import { signupUser, } from "../redux/userSlice";
 import { useHistory } from 'react-router-dom';
 
 
@@ -75,19 +75,19 @@ const Register = () => {
     }
 
     const dispatch = useDispatch()
-    const { isFetching, isSuccess, error } = useSelector(userSelector)
     const history = useHistory();
+    const { isFetching, error } = useSelector((state) => state.user)
 
     const handleLogin = (e) => {
         e.preventDefault();
-        dispatch(signupUser(data))
+        //dispatch(signupUser(data))
     }
 
-    useEffect(() => {
-        if (isSuccess) {
-            history.push('/');
-        }
-    }, [isSuccess, history]);
+    // useEffect(() => {
+    //     if (isSuccess) {
+    //         history.push('/');
+    //     }
+    // }, [isSuccess, history]);
     return (
         <Container>
             <Wrapper>
